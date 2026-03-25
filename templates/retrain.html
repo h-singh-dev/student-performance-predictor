@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Retrained</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">🎓 Student Performance Predictor</div>
+        <div class="nav-links">
+            <a href="/">Predict</a>
+            <a href="/add-data">Add Data</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card">
+            {% if success %}
+            <div class="retrain-success">
+                <div class="retrain-icon">🎯</div>
+                <h2>Model Retrained Successfully!</h2>
+                <p>New Accuracy: <strong>{{ accuracy }}%</strong></p>
+                <p>Your model has been updated with the latest student data.</p>
+                <a href="/" class="btn">Go to Predictor</a>
+            </div>
+            {% else %}
+            <div class="alert error">⚠️ {{ error }}</div>
+            <a href="/" class="btn">Go Back</a>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

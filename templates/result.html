@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result - Student Performance Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">🎓 Student Performance Predictor</div>
+        <div class="nav-links">
+            <a href="/">Predict</a>
+            <a href="/add-data">Add Data</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="card result-card {% if result.prediction == 'Pass' %}pass{% else %}fail{% endif %}">
+            <h2>Prediction Result</h2>
+
+            <div class="prediction-badge {% if result.prediction == 'Pass' %}pass-badge{% else %}fail-badge{% endif %}">
+                {% if result.prediction == 'Pass' %}
+                ✓ PASS
+                {% else %}
+                ✗ FAIL
+                {% endif %}
+            </div>
+
+            <div class="overall-score">
+                Overall Score: <strong>{{ result.overall_score }}/100</strong>
+            </div>
+
+            <div class="probability-bars">
+                <div class="prob-item">
+                    <label>Pass Probability</label>
+                    <div class="bar-container">
+                        <div class="bar pass-bar" style="width: {{ result.pass_probability }}%;"></div>
+                    </div>
+                    <span>{{ result.pass_probability }}%</span>
+                </div>
+                <div class="prob-item">
+                    <label>Fail Probability</label>
+                    <div class="bar-container">
+                        <div class="bar fail-bar" style="width: {{ result.fail_probability }}%;"></div>
+                    </div>
+                    <span>{{ result.fail_probability }}%</span>
+                </div>
+            </div>
+
+            <div class="student-details">
+                <h3>Input Details</h3>
+                <table>
+                    <tr><td>Study Hours</td><td>{{ data.study_hours }} hrs/day</td></tr>
+                    <tr><td>Attendance</td><td>{{ data.attendance_percentage }}%</td></tr>
+                    <tr><td>Math Score</td><td>{{ data.math_score }}/100</td></tr>
+                    <tr><td>Science Score</td><td>{{ data.science_score }}/100</td></tr>
+                    <tr><td>English Score</td><td>{{ data.english_score }}/100</td></tr>
+                    <tr><td>Gender</td><td>{{ data.gender }}</td></tr>
+                    <tr><td>School Type</td><td>{{ data.school_type }}</td></tr>
+                    <tr><td>Parent Education</td><td>{{ data.parent_education }}</td></tr>
+                    <tr><td>Internet Access</td><td>{{ data.internet_access }}</td></tr>
+                    <tr><td>Travel Time</td><td>{{ data.travel_time }}</td></tr>
+                    <tr><td>Extra Activities</td><td>{{ data.extra_activities }}</td></tr>
+                    <tr><td>Study Method</td><td>{{ data.study_method }}</td></tr>
+                </table>
+            </div>
+
+            <div class="advice {% if result.prediction == 'Pass' %}advice-pass{% else %}advice-fail{% endif %}">
+                {% if result.prediction == 'Pass' %}
+                🎉 Great job! Keep up the good work and maintain your study habits.
+                {% else %}
+                💪 Don't give up! Focus on increasing study hours and attendance percentage.
+                {% endif %}
+            </div>
+        </div>
+
+        <a href="/" class="btn">🔄 Predict Another Student</a>
+    </div>
+</body>
+</html>

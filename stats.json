@@ -1,0 +1,1 @@
+{"accuracy": 99.9, "total_students": 15001, "pass_rate": 40.4, "features": ["study_hours", "attendance_percentage", "math_score", "science_score", "english_score", "overall_score", "gender_enc", "school_type_enc", "parent_education_enc", "internet_access_enc", "travel_time_enc", "extra_activities_enc", "study_method_enc"]}
